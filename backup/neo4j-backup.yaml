@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: neo4j-backup
+spec:
+  restartPolicy: Never
+  containers:
+    - name: neo4j-backup
+      image: neo4j:4.0.4-enterprise
+      env:
+      - name: BACKUP_ADDR
+        value: "graphdb-neo4j-core-0.graphdb-neo4j.default.svc.cluster.local:6362"
+      - name: BACKUP_DATABASE
+        value: "neo4j"
+      command:
+      - "/bin/bash"
+      - "-c"
+      - "neo4j-admin backup --from=$BACKUP_ADDR --database=$BACKUP_DATABASE --backup-dir=/backup/"
+      volumeMounts:
+      - name: backupdir
+        mountPath: /backup
+  volumes:
+  - name: backupdir
+    persistentVolumeClaim:
+      claimName: backupdir-graphdb-neo4j-core-0
+---
