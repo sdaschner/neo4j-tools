@@ -1,5 +1,13 @@
 == Tools for Neo4J
 
-=== Backup
+=== Taking remote backups
 
-// Have a look at the following blog post:
+Have a look at the following blog post how to take remote backups of Neo4J instances that run in a Kubernetes environment:
+
+https://blog.sebastian-daschner.com/entries/neo4j-backup-instance-k8s
+
+=== Restore Neo4J backups
+
+The following blog post explains how to restore previously taken backups in a managed Kubernetes environment:
+
+https://blog.sebastian-daschner.com/entries/neo4j-restore-backup-k8s
